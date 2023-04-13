@@ -8,12 +8,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   description: Minikube Setup Baseline
-  # Allow manifests to deploy from any Git repos
   sourceRepos:
     - 'https://github.com/jzandbergen/minikube-setup'
-  # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
-  - namespace: guestbook
+  - namespace: '*'
     server: https://kubernetes.default.svc
   # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:
