@@ -13,28 +13,17 @@ spec:
   destinations:
   - namespace: '*'
     server: https://kubernetes.default.svc
-  # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:
   - group: ''
-    kind: Namespace
-  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
-  namespaceResourceBlacklist:
-  - group: ''
-    kind: ResourceQuota
-  - group: ''
-    kind: LimitRange
-  - group: ''
-    kind: NetworkPolicy
+    kind: '*'
+  namespaceResourceBlacklist: []
   roles:
-  # A role which provides read-only access to all applications in the project
   - name: read-only
     description: Read-only privileges to my-project
     policies:
     - p, proj:my-project:read-only, applications, get, my-project/*, allow
     groups:
     - my-oidc-group
-  # A role which provides sync privileges to only the guestbook-dev application, e.g. to provide
-  # sync privileges to a CI system
   - name: ci-role
     description: Sync privileges for my-project
     policies:
