@@ -10,7 +10,7 @@ spec:
   description: Minikube Setup Baseline
   # Allow manifests to deploy from any Git repos
   sourceRepos:
-  - 'minikube-setup-repo'
+    - 'https://github.com/jzandbergen/minikube-setup'
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
   - namespace: guestbook

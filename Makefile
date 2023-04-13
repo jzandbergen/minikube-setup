@@ -34,7 +34,7 @@ help:
 	@echo "- destroy cluster instance"
 	@echo ""	
 
-all: install-minikube cluster-up argocd-up
+all: install-minikube cluster-up argocd-bootstrap argocd-up
 
 cluster-up:
 	### Create Minikube Cluster
@@ -48,14 +48,25 @@ cluster-up:
 	### Make sure we are in the proper context.
 	$(KUBECTL) config use-context minikube
 
-argocd-up:
-	### Deploy ArgoCD 
-	# ArgoCD will then takeover and deploy everything to the cluster.
-	$(KUBECTL) create namespace argocd
-	
+argocd-bootstrap:
+	### Make sure we are in the proper context.
+	$(KUBECTL) config use-context minikube
+
+	### Deploy ArgoCD - (CRD's)
+	-$(KUBECTL) create namespace argocd
 	# This first one will fail because CRD's are noyt yet available.
 	-$(KUBECTL) -n argocd apply -k ./appsets/baseline/argocd
+
+	### Required for kubernetes to settle when deploying the CRD's.
+	#   if this is omitted argocd will fail to deploy because the appset
+	#   CRD's will not be found.
 	sleep 1
+
+argocd-up:
+	### Make sure we are in the proper context.
+	$(KUBECTL) config use-context minikube
+
+	### Deploy our actual ArgoCD
 	$(KUBECTL) -n argocd apply -k ./appsets/baseline/argocd
 	
 
@@ -70,7 +81,6 @@ argocd-up:
 	@echo "the ArgoCD server. with:"
 	@echo ""
 	@echo "kubectl -n argocd port-forward argocd-server-<id> 28080:8080"
-	@echo ""
 	@echo -------------------------------
 	@echo ""	
 

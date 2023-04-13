@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: baseline-apps
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/jzandbergen/minikube-setup
+        revision: HEAD
+        directories:
+          - path: appsets/baseline/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: "baseline"
+      source:
+        repoURL: https://github.com/jzandbergen/minikube-setup
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
