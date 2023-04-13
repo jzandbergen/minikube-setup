@@ -1,0 +1,5 @@
+# additional resources like ingress rules, cluster and repository secrets.
+resources:
+- github.com/argoproj/argo-cd//manifests/cluster-install?ref=v2.6.7
+- ./base/secret_minikube-setup-repo.yaml
+- ./base/argocd-project_my-project.yaml
