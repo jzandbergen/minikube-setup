@@ -1,6 +1,9 @@
-# additional resources like ingress rules, cluster and repository secrets.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization                                                                
+namespace: argocd 
 resources:
-- github.com/argoproj/argo-cd//manifests/cluster-install?ref=v2.6.7
-- ./base/secret_minikube-setup-repo.yaml
-- ./base/appproject_baseline.yaml
-- ./base/appset_baseline.yaml
+  - github.com/argoproj/argo-cd//manifests/cluster-install?ref=v2.6.7
+  - secret_minikube-setup-repo.yaml
+  - appproject_baseline.yaml
+  - appset_baseline.yaml
+  - configmap_argocd.yaml
