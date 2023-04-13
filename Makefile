@@ -54,8 +54,8 @@ argocd-bootstrap:
 
 	### Deploy ArgoCD - (CRD's)
 	-$(KUBECTL) create namespace argocd
-	# This first one will fail because CRD's are noyt yet available.
-	-$(KUBECTL) -n argocd apply -k ./appsets/baseline/argocd
+	# ArgoCD is done twice, this first run is to first deploy the CRD's.
+	-$(KUBECTL) -n argocd apply -k ./bootstrap/argocd
 
 	### Required for kubernetes to settle when deploying the CRD's.
 	#   if this is omitted argocd will fail to deploy because the appset
