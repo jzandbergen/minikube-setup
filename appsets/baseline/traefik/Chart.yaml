@@ -3,6 +3,6 @@ name: traefik
 version: 0.0.0
 dependencies:
 - name: traefik
-  version: ~v2.9.0
+  version: ~22.1.0
   repository: '@traefik'
 
