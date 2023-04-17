@@ -4,11 +4,17 @@ traefik:
       level: INFO
   globalArguments: []
   additionalArguments: []
+  service:
+    type: NodePort
+    spec:
+      externalTrafficPolicy: Cluster
   ports:
-    traefik:
-      hostPort: 39000
     web:
-      hostPort: 30080
+      hostPort: 80
+      nodePort: 30080
     websecure:
-      hostPort: 30443
+      hostPort: 443
+      nodePort: 30443
+      traefik:
+        expose: true
 
