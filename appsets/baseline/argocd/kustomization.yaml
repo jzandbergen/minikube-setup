@@ -7,5 +7,6 @@ resources:
   - appproject_baseline.yaml
   - appset_baseline.yaml
   - secret_jetstack-helm-repo.yaml
+  - secret_traefik-helm-repo.yaml
 patchesStrategicMerge:
   - configmap_argocd-cm.yaml
