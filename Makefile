@@ -35,6 +35,7 @@ help:
 	@echo ""	
 
 all: install-minikube cluster-up argocd-bootstrap argocd-up
+all-no-download: cluster-up argocd-bootstrap argocd-up
 
 cluster-up:
 	### Create Minikube Cluster
