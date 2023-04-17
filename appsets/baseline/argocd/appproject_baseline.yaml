@@ -9,6 +9,7 @@ spec:
   description: Minikube Setup Baseline
   sourceRepos:
     - 'https://github.com/jzandbergen/minikube-setup'
+    - 'https://charts.jetstack.io'
   destinations:
   - namespace: '*'
     server: https://kubernetes.default.svc
