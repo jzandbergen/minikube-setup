@@ -34,8 +34,8 @@ help:
 	@echo "- destroy cluster instance"
 	@echo ""	
 
-all: install-minikube cluster-up argocd-bootstrap argocd-up
-all-no-download: cluster-up argocd-bootstrap argocd-up
+all: install-minikube all-no-download
+all-no-download: cluster-up argocd-bootstrap argocd-up install-ca
 
 cluster-up:
 	### Create Minikube Cluster
@@ -84,6 +84,23 @@ argocd-up:
 	@echo "kubectl -n argocd port-forward argocd-server-<id> 28080:8080"
 	@echo -------------------------------
 	@echo ""	
+
+certs:
+	@echo ""	
+	@echo -------------------------------
+	@echo "Generating test CA keypair used by cert-manager to issue certificates."
+	@echo -------------------------------
+	@echo ""	
+	mkdir certs
+	openssl req -x509 -newkey rsa:4096 -keyout certs/ca.key -out certs/ca.crt -days 365 -nodes -subj "/CN=Minikube Kubernetes CA"
+
+install-ca: certs
+	### Make sure we are in the proper context.
+	$(KUBECTL) config use-context minikube
+
+	### Create the cert-manager namespace and place CA certificates.
+	$(KUBECTL) create namespace cert-manager
+	$(KUBECTL) create secret tls ca-key-pair --key="certs/ca.key" --cert="certs/ca.crt" -n cert-manager
 
 cluster-destroy:
 	minikube delete --all --purge
