@@ -1,0 +1,8 @@
+apiVersion: v2
+name: traefik
+version: 0.0.0
+dependencies:
+- name: traefik
+  version: ~v2.9.0
+  repository: '@traefik'
+

@@ -1,0 +1,14 @@
+traefik:
+  logs:
+    general:
+      level: INFO
+  globalArguments: []
+  additionalArguments: []
+  ports:
+    traefik:
+      hostPort: 39000
+    web:
+      hostPort: 30080
+    websecure:
+      hostPort: 30443
+
