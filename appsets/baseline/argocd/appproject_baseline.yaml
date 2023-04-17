@@ -10,6 +10,7 @@ spec:
   sourceRepos:
     - 'https://github.com/jzandbergen/minikube-setup'
     - 'https://charts.jetstack.io'
+    - 'https://traefik.github.io/charts'
   destinations:
   - namespace: '*'
     server: https://kubernetes.default.svc
