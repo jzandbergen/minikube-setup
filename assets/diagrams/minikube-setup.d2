@@ -1,0 +1,23 @@
+laptop: My Laptop {
+  browser: browser\nhttp(s)://somethingsomething.localhost
+
+  haproxy: HAProxy @ 127.0.0.1 {
+    tooltip: Minikube can not be bound on a specific IP when using the KVM \
+      driver. So until we come up with something clever this one is nessecary \
+      to forward *.localhost to traefik.
+    80: port 80
+    443: port 443
+  }
+
+  minikube: {
+    traefik: {
+      web: entrypoint web\n@\nNodePort 30080
+      websecure: entrypoint websecure\n@\nNodePort 30443
+    }
+  }
+
+  browser -> haproxy.80
+  browser -> haproxy.443
+  haproxy.80 -> minikube.traefik.web
+  haproxy.443 -> minikube.traefik.websecure
+}
