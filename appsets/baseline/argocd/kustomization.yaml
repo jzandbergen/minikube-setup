@@ -10,3 +10,4 @@ resources:
   - secret_traefik-helm-repo.yaml
 patchesStrategicMerge:
   - configmap_argocd-cm.yaml
+  - configmap_argocd-cmd-params-cm.yaml
