@@ -4,10 +4,9 @@ traefik:
       enabled: true
       annotations: {}
       labels: {}
-      matchRule: Host(`traefik.localhost`) && !PathPrefix(`/api`)
+      matchRule: Host(`traefik.localhost`)
       entryPoints: ["websecure"]
-      middlewares:
-        - name: replace-dashboard
+      middlewares: []
       tls:
         secretName: traefik-tls
   logs:
