@@ -4,7 +4,7 @@ traefik:
       enabled: true
       annotations: {}
       labels: {}
-      matchRule: Host(`traefik.localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      matchRule: Host(`traefik.localhost`) && !PathPrefix(`/api`)
       entryPoints: ["websecure"]
       middlewares:
         - name: replace-dashboard
