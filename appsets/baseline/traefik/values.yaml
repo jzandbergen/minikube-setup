@@ -6,7 +6,8 @@ traefik:
       labels: {}
       matchRule: Host(`traefik.localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       entryPoints: ["websecure"]
-      middlewares: []
+      middlewares:
+        - replace-dashboard
       tls:
         secretName: traefik-tls
   logs:
