@@ -1,4 +1,14 @@
 traefik:
+ingressRoute:
+  dashboard:
+    enabled: true
+    annotations: {}
+    labels: {}
+    matchRule: Host(`traefik.localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    entryPoints: ["websecure"]
+    middlewares: []
+    tls:
+      secretName: traefik-tls
   logs:
     general:
       level: INFO
