@@ -11,7 +11,7 @@ traefik:
         secretName: traefik-tls
   logs:
     general:
-      level: INFO
+      level: DEBUG
   globalArguments: []
   additionalArguments: []
   service:
