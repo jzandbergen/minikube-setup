@@ -13,7 +13,9 @@ traefik:
     general:
       level: DEBUG
   globalArguments: []
-  additionalArguments: []
+  additionalArguments:
+    - --providers.kubernetesingress.allowexternalnameservices=true
+    - --providers.kubernetesingress.ingressendpoint.ip=127.0.0.1 
   service:
     type: NodePort
     spec:
