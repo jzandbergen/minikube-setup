@@ -13,7 +13,7 @@ spec:
     metadata:
       name: '{{path.basename}}'
     spec:
-      project: "baseline"
+      project: "observability"
       source:
         repoURL: https://github.com/jzandbergen/minikube-setup
         targetRevision: HEAD
