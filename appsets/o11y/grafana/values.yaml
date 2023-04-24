@@ -1,6 +1,7 @@
 grafana:
   ingress:
     enabled: true
+    ingressClassName: traefik
     annotations:
       cert-manager.io/cluster-issuer: ca-issuer
       traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
