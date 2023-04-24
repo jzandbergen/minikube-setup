@@ -11,6 +11,7 @@ resources:
   - secret_jetstack-helm-repo.yaml
   - secret_traefik-helm-repo.yaml
   - secret_grafana-helm-repo.yaml
+  - ingressroute_argocd-server.yaml
 patchesStrategicMerge:
   - configmap_argocd-cm.yaml
   - configmap_argocd-cmd-params-cm.yaml
