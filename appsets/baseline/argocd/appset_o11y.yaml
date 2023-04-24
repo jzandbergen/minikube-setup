@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: observability-apps
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/jzandbergen/minikube-setup
+        revision: HEAD
+        directories:
+          - path: appsets/o11y/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: "baseline"
+      source:
+        repoURL: https://github.com/jzandbergen/minikube-setup
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'o11y-{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

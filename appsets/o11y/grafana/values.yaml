@@ -1,0 +1,14 @@
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: ca-issuer
+    hosts:
+      - grafana.localhost
+    tls:
+      - hosts:
+          - grafana.localhost
+        secretName: grafana-tls
+
+

@@ -5,7 +5,9 @@ resources:
   - github.com/argoproj/argo-cd//manifests/cluster-install?ref=v2.6.7
   - secret_minikube-setup-repo.yaml
   - appproject_baseline.yaml
+  - appproject_o11y.yaml
   - appset_baseline.yaml
+  - appset_o11y.yaml
   - secret_jetstack-helm-repo.yaml
   - secret_traefik-helm-repo.yaml
   - secret_grafana-helm-repo.yaml
